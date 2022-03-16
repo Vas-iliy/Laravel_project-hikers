@@ -1,3 +1,4 @@
+@extends('layouts.layout')
 @section('title', 'Home')
 @section('content')
 <div class="py-5">

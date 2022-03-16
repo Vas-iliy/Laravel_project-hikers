@@ -8,8 +8,14 @@
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700|Playfair+Display:400,700,900" rel="stylesheet">
 
     <link rel="stylesheet" href="{{asset('assets/front/fonts/icomoon/style.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/front/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/front/css/magnific-popup.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/front/css/jquery-ui.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/front/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/front/css/owl.theme.default.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/front/fonts/flaticon/font/flaticon.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/front/css/main.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/front/css/style.css')}}">
+</head>
 </head>
 <body>
 
@@ -84,6 +90,16 @@
 
 @include('layouts.footer')
 
+<script src="{{asset('assets/front/js/jquery-3.3.1.min.js')}}"></script>
+<script src="{{asset('assets/front/js/jquery-migrate-3.0.1.min.js')}}"></script>
+<script src="{{asset('assets/front/js/jquery-ui.js')}}"></script>
+<script src="{{asset('assets/front/js/popper.min.js')}}"></script>
+<script src="{{asset('assets/front/js/owl.carousel.min.js')}}"></script>
+<script src="{{asset('assets/front/js/jquery.stellar.min.js')}}"></script>
+<script src="{{asset('assets/front/js/jquery.countdown.min.js')}}"></script>
+<script src="{{asset('assets/front/js/jquery.magnific-popup.min.js')}}"></script>
+<script src="{{asset('assets/front/js/bootstrap-datepicker.min.js')}}"></script>
+<script src="{{asset('assets/front/js/aos.js')}}"></script>
 <script src="{{asset('assets/front/js/main.js')}}"></script>
 
 </body>
