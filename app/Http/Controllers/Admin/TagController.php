@@ -37,8 +37,12 @@ class TagController extends Controller
 
     public function edit($id)
     {
-        $tag = $this->tags->getId($id);
-        return view('admin.tags.edit', compact('tag'));
+        try {
+            $tag = $this->tags->getId($id);
+            return view('admin.tags.edit', compact('tag'));
+        } catch (\DomainException $e) {
+            return redirect()->route('tags.index')->with('error', $e->getMessage());
+        }
     }
 
     public function update(Request $request, $id)
@@ -49,19 +53,31 @@ class TagController extends Controller
 
     public function destroy($id)
     {
-        $this->service->remove($id);
-        return redirect()->route('tags.index')->with('success', 'Тег удален');
+        try {
+            $this->service->remove($id);
+            return redirect()->route('tags.index')->with('success', 'Тег удален');
+        } catch (\DomainException $e) {
+            return redirect()->route('tags.index')->with('error', $e->getMessage());
+        }
     }
 
     public function activate($id)
     {
-        $this->service->activate($id);
-        return redirect()->route('tags.index')->with('success', 'Тег добавлен на сайт');
+        try {
+            $this->service->activate($id);
+            return redirect()->route('tags.index')->with('success', 'Тег добавлен на сайт');
+        } catch (\DomainException $e) {
+            return redirect()->route('tags.index')->with('error', $e->getMessage());
+        }
     }
 
     public function draft($id)
     {
-        $this->service->draft($id);
-        return redirect()->route('tags.index')->with('success', 'Тег добавлен в лист ожидания');
+        try {
+            $this->service->draft($id);
+            return redirect()->route('tags.index')->with('success', 'Тег добавлен в лист ожидания');
+        } catch (\DomainException $e) {
+            return redirect()->route('tags.index')->with('error', $e->getMessage());
+        }
     }
 }

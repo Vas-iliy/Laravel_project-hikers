@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Core\services;
-
 
 use App\Core\repositories\CategoryRepository;
 use App\Models\Category;
@@ -47,6 +45,9 @@ class CategoryService
     public function remove($id)
     {
         $category = $this->categories->getId($id);
+        if ($category->posts->count()) {
+            throw new \DomainException('Ошибка, у категории есть записи');
+        }
         $this->categories->remove($category);
     }
 }

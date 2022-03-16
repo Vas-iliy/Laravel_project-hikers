@@ -37,8 +37,12 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
-        $category = $this->categories->getId($id);
-        return view('admin.categories.edit', compact('category'));
+        try {
+            $category = $this->categories->getId($id);
+            return view('admin.categories.edit', compact('category'));
+        } catch (\DomainException $e) {
+            return redirect()->route('categories.index')->with('error', $e->getMessage());
+        }
     }
 
     public function update(Request $request, $id)
@@ -49,19 +53,31 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        $this->service->remove($id);
-        return redirect()->route('categories.index')->with('success', 'Категория удалена');
+        try {
+            $this->service->remove($id);
+            return redirect()->route('categories.index')->with('success', 'Категория удалена');
+        } catch (\DomainException $e) {
+            return redirect()->route('categories.index')->with('error', $e->getMessage());
+        }
     }
 
     public function activate($id)
     {
-        $this->service->activate($id);
-        return redirect()->route('categories.index')->with('success', 'Категория добавлена на сайт');
+        try {
+            $this->service->activate($id);
+            return redirect()->route('categories.index')->with('success', 'Категория добавлена на сайт');
+        } catch (\DomainException $e) {
+            return redirect()->route('categories.index')->with('error', $e->getMessage());
+        }
     }
 
     public function draft($id)
     {
-        $this->service->draft($id);
-        return redirect()->route('categories.index')->with('success', 'Категория добавлена в лист ожидания');
+        try {
+            $this->service->draft($id);
+            return redirect()->route('categories.index')->with('success', 'Категория добавлена в лист ожидания');
+        } catch (\DomainException $e) {
+            return redirect()->route('categories.index')->with('error', $e->getMessage());
+        }
     }
 }

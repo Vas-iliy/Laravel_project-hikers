@@ -45,6 +45,9 @@ class TagService
     public function remove($id)
     {
         $tag = $this->tags->getId($id);
+        if ($tag->posts->count()) {
+            throw new \DomainException('Ошибка, у тега есть статьи');
+        }
         $this->tags->remove($tag);
     }
 }

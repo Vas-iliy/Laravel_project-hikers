@@ -5,7 +5,6 @@ namespace App\Models;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 
 class Category extends Model
 {
@@ -36,7 +35,7 @@ class Category extends Model
     public function activate(): void
     {
         if ($this->isActive()) {
-            throw new \DomainException('Product is already active.');
+            throw new \DomainException('Category is already active.');
         }
         $this->status = self::STATUS_ACTIVE;
     }
@@ -44,7 +43,7 @@ class Category extends Model
     public function draft(): void
     {
         if ($this->isDraft()) {
-            throw new \DomainException('Product is already draft.');
+            throw new \DomainException('Category is already draft.');
         }
         $this->status = self::STATUS_DRAFT;
     }
