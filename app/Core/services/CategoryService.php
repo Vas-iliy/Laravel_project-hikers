@@ -27,7 +27,6 @@ class CategoryService
     public function edit($id, Request $request)
     {
         $category = Category::query()->find($id)->update($request->all());
-        $this->categories->save($category);
         return $category;
     }
 

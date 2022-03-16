@@ -12,7 +12,7 @@ class Category extends Model
     use HasFactory;
     use Sluggable;
 
-    const STATUS_DELETED = 0;
+    const STATUS_DELETED = 1;
     const STATUS_DRAFT = 9;
     const STATUS_ACTIVE = 10;
 

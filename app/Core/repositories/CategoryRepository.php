@@ -25,7 +25,7 @@ class CategoryRepository
 
     public function getAll()
     {
-        return Category::all();
+        return Category::query()->orderBy('created_at', 'desc')->paginate(env('PAGINATE'));
     }
 
     public function getPopularCategory()

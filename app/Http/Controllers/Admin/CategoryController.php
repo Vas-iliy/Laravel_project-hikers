@@ -35,12 +35,6 @@ class CategoryController extends Controller
         return redirect()->route('categories.index')->with('success', 'Категория добавлена');
     }
 
-    public function show($id)
-    {
-        $category = $this->categories->getId($id);
-        return view('admin.categories.show', compact('category'));
-    }
-
     public function edit($id)
     {
         $category = $this->categories->getId($id);
@@ -62,12 +56,12 @@ class CategoryController extends Controller
     public function activate($id)
     {
         $this->service->activate($id);
-        return redirect()->route('categories.show', ['category' => $id])->with('success', 'Категория добавлена на сайт');
+        return redirect()->route('categories.index')->with('success', 'Категория добавлена на сайт');
     }
 
     public function draft($id)
     {
         $this->service->draft($id);
-        return redirect()->route('categories.show', ['category' => $id])->with('success', 'Категория добавлена в лист ожидания');
+        return redirect()->route('categories.index')->with('success', 'Категория добавлена в лист ожидания');
     }
 }

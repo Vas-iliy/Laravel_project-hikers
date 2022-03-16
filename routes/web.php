@@ -11,7 +11,7 @@ Route::get('/contact', [\App\Http\Controllers\PageController::class, 'contact'])
 Route::get('/about', [\App\Http\Controllers\PageController::class, 'about'])->name('about');
 
 //Admin
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/', [\App\Http\Controllers\Admin\MainController::class, 'index'])->name('admin.index');
     Route::resource('/categories', CategoryController::class);
     Route::post('/categories/activate/{category}', [CategoryController::class, 'activate'])->name('categories.activate');
