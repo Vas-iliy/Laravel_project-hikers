@@ -29,25 +29,31 @@ mix.copy('resources/assets/admin/css/adminlte.min.css.map',
 mix.copy('resources/assets/admin/js/adminlte.min.js.map',
     'public/assets/admin/js/adminlte.min.js.map');
 ///////////////////////////////////////////////////////////////
-/*mix.styles([
-    'resources/assets/front/css/bootstrap.css',
-    'resources/assets/front/css/font-awesome.min.css',
-    'resources/assets/front/style.css',
-    'resources/assets/front/css/animate.css',
-    'resources/assets/front/css/responsive.css',
-    'resources/assets/front/css/colors.css',
-    'resources/assets/front/css/version/marketing.css',
+mix.styles([
+    'resources/assets/front/css/bootstrap.min.css',
+    'resources/assets/front/css/magnific-popup.css',
+    'resources/assets/front/css/jquery-ui.css',
+    'resources/assets/front/css/owl.carousel.min.css',
+    'resources/assets/front/css/owl.theme.default.min.css',
+    'resources/assets/front/css/bootstrap-datepicker.css',
+    'resources/assets/front/css/aos.css',
 ], 'public/assets/front/css/main.css')
 
 mix.scripts([
-    'resources/assets/front/js/jquery.min.js',
-    'resources/assets/front/js/tether.min.js',
+    'resources/assets/front/js/jquery-3.3.1.min.js',
+    'resources/assets/front/js/jquery-migrate-3.0.1.min.js',
+    'resources/assets/front/js/jquery-ui.js',
+    'resources/assets/front/js/popper.min.js',
     'resources/assets/front/js/bootstrap.min.js',
-    'resources/assets/front/js/animate.js',
-    'resources/assets/front/js/custom.js',
+    'resources/assets/front/js/owl.carousel.min.js',
+    'resources/assets/front/js/jquery.stellar.min.js',
+    'resources/assets/front/js/jquery.countdown.min.js',
+    'resources/assets/front/js/jquery.magnific-popup.min.js',
+    'resources/assets/front/js/bootstrap-datepicker.min.js',
+    'resources/assets/front/js/aos.js',
+    'resources/assets/front/js/main.js',
 ], 'public/assets/front/js/main.js');
 
 mix.copyDirectory('resources/assets/front/images', 'public/assets/front/images');
 mix.copyDirectory('resources/assets/front/fonts', 'public/assets/front/fonts');
-mix.copyDirectory('resources/assets/front/upload', 'public/assets/front/upload');*/
 
