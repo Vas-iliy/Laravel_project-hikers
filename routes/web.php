@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -12,7 +13,9 @@ Route::get('/about', [\App\Http\Controllers\PageController::class, 'about'])->na
 //Admin
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admin'], function () {
     Route::get('/', [\App\Http\Controllers\Admin\MainController::class, 'index'])->name('admin.index');
-    Route::resource('/categories', 'CategoryController');
+    Route::resource('/categories', CategoryController::class);
+    Route::post('/categories/activate/{category}', [CategoryController::class, 'activate'])->name('categories.activate');
+    Route::post('/categories/draft/{category}', [CategoryController::class, 'draft'])->name('categories.draft');
     Route::resource('/tags', 'TagController');
     Route::resource('/posts', 'PostController');
 });
