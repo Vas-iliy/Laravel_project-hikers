@@ -23,7 +23,7 @@ class StatusHelper
             case 9:
                 $class = 'badge badge-secondary';
                 break;
-            case 0:
+            case 1:
                 $class = 'badge badge-danger';
                 break;
             case 10:

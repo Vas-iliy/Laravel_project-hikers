@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -16,7 +17,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::resource('/categories', CategoryController::class);
     Route::post('/categories/activate/{category}', [CategoryController::class, 'activate'])->name('categories.activate');
     Route::post('/categories/draft/{category}', [CategoryController::class, 'draft'])->name('categories.draft');
-    Route::resource('/tags', 'TagController');
+    Route::resource('/tags', TagController::class);
+    Route::post('/tags/activate/{tag}', [TagController::class, 'activate'])->name('tags.activate');
+    Route::post('/tags/draft/{tag}', [TagController::class, 'draft'])->name('tags.draft');
     Route::resource('/posts', 'PostController');
 });
 

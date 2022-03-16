@@ -1,0 +1,42 @@
+<?php
+
+namespace App\Core\repositories;
+
+use App\Models\Tag;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
+class TagRepository
+{
+    public function getId($id)
+    {
+        if (!$tag = Tag::query()->where('id', $id)->first()) {
+            throw new NotFoundHttpException('tag is not found');
+        }
+        return $tag;
+    }
+
+    public function getSlug($slug)
+    {
+        if (!$tag = Tag::query()->where('slug', $slug)->first()) {
+            throw new NotFoundHttpException('tag is not found');
+        }
+        return $tag;
+    }
+
+    public function getAll()
+    {
+        return Tag::query()->orderBy('created_at', 'desc')->paginate(env('PAGINATE'));
+    }
+
+    public function remove($tag)
+    {
+        $tag->status = $tag::STATUS_DELETED;
+        if (!$tag->save()) throw new \RuntimeException('Removing tag error.');
+    }
+
+    public function save($tag)
+    {
+        if (!$return = $tag->save()) throw new \RuntimeException('Saving tag error.');
+        return $return;
+    }
+}
