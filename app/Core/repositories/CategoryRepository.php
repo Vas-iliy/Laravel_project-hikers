@@ -3,17 +3,24 @@
 namespace App\Core\repositories;
 
 use App\Models\Category;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CategoryRepository
 {
     public function getId($id)
     {
-        return Category::query()->where('id', $id)->first();
+        if (!$category = Category::query()->where('id', $id)->first()) {
+            throw new NotFoundHttpException('Category is not found');
+        }
+        return $category;
     }
 
     public function getSlug($slug)
     {
-        return Category::query()->where('slug', $slug)->first();
+        if (!$category = Category::query()->where('slug', $slug)->first()) {
+            throw new NotFoundHttpException('Category is not found');
+        }
+        return $category;
     }
 
     public function getAll()
@@ -39,6 +46,4 @@ class CategoryRepository
         if (!$return = $category->save()) throw new \RuntimeException('Saving category error.');
         return $return;
     }
-
-
 }

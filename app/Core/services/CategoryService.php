@@ -26,9 +26,23 @@ class CategoryService
 
     public function edit($id, Request $request)
     {
-        $category = Category::query()->update($request->all());
+        $category = Category::query()->find($id)->update($request->all());
         $this->categories->save($category);
         return $category;
+    }
+
+    public function activate($id)
+    {
+        $category = $this->categories->getId($id);
+        $category->activate();
+        $this->categories->save($category);
+    }
+
+    public function draft($id)
+    {
+        $category = $this->categories->getId($id);
+        $category->draft();
+        $this->categories->save($category);
     }
 
     public function remove($id)
