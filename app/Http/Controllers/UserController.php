@@ -55,4 +55,9 @@ class UserController extends Controller
         Auth::logout();
         return redirect()->home();
     }
+
+    public function show()
+    {
+        return view('front.user.show');
+    }
 }
