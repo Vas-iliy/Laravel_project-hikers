@@ -13,7 +13,7 @@ class AlterTableUsersImage extends Migration
      */
     public function up()
     {
-        Schema::table('roles', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->string('image')->default('users/no-avatar.png');
         });
     }
@@ -25,8 +25,8 @@ class AlterTableUsersImage extends Migration
      */
     public function down()
     {
-        Schema::table('roles', function (Blueprint $table) {
-            $table->dropColumn('image');
+        Schema::table('users', function (Blueprint $table) {
+            //
         });
     }
 }

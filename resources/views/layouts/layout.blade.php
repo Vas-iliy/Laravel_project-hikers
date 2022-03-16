@@ -70,6 +70,8 @@
     </header>
 </div>
 
+@include('layouts.alerts')
+
 @if(\Illuminate\Support\Facades\Request::route()->getName() !== 'home')
 <div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url({{asset('assets/front/images/hero_1.jpg')}});">
     <div class="container">
