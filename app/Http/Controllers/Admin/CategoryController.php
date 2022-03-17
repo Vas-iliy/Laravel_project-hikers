@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Core\repositories\CategoryRepository;
 use App\Core\services\CategoryService;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreCategory;
 
 class CategoryController extends Controller
 {
@@ -29,7 +29,7 @@ class CategoryController extends Controller
         return view('admin.categories.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreCategory $request)
     {
         $this->service->create($request);
         return redirect()->route('categories.index')->with('success', 'Категория добавлена');
@@ -45,7 +45,7 @@ class CategoryController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreCategory $request, $id)
     {
         $this->service->edit($id, $request);
         return redirect()->route('categories.index')->with('success', 'Изменения сохранены');

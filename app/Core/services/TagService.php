@@ -3,8 +3,8 @@
 namespace App\Core\services;
 
 use App\Core\repositories\TagRepository;
+use App\Http\Requests\StoreTag;
 use App\Models\Tag;
-use Illuminate\Http\Request;
 
 class TagService
 {
@@ -15,14 +15,14 @@ class TagService
         $this->tags = $tags;
     }
 
-    public function create(Request $request)
+    public function create(StoreTag $request)
     {
         $tag = Tag::query()->create($request->all());
         $this->tags->save($tag);
         return $tag;
     }
 
-    public function edit($id, Request $request)
+    public function edit($id, StoreTag $request)
     {
         $tag = Tag::query()->find($id)->update($request->all());
         return $tag;

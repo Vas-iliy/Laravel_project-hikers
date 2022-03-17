@@ -3,8 +3,8 @@
 namespace App\Core\services;
 
 use App\Core\repositories\CategoryRepository;
+use App\Http\Requests\StoreCategory;
 use App\Models\Category;
-use Illuminate\Http\Request;
 
 class CategoryService
 {
@@ -15,14 +15,14 @@ class CategoryService
         $this->categories = $categories;
     }
 
-    public function create(Request $request)
+    public function create(StoreCategory $request)
     {
         $category = Category::query()->create($request->all());
         $this->categories->save($category);
         return $category;
     }
 
-    public function edit($id, Request $request)
+    public function edit($id, StoreCategory $request)
     {
         $category = Category::query()->find($id)->update($request->all());
         return $category;

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Core\repositories\TagRepository;
 use App\Core\services\TagService;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreTag;
 
 class TagController extends Controller
 {
@@ -29,7 +29,7 @@ class TagController extends Controller
         return view('admin.tags.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreTag $request)
     {
         $this->service->create($request);
         return redirect()->route('tags.index')->with('success', 'Тег добавлен');
@@ -45,7 +45,7 @@ class TagController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreTag $request, $id)
     {
         $this->service->edit($id, $request);
         return redirect()->route('tags.index')->with('success', 'Изменения сохранены');
