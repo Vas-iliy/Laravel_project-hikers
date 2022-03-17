@@ -30,9 +30,9 @@ class CategoryRepository
 
     public function getPopularCategory()
     {
-        return Category::query()->selectRaw('categories.id,
+        return Category::query()->selectRaw('categories.*,
             (SELECT COUNT(posts.id) FROM posts WHERE post.category_id = category.id) AS COUNT_POSTS')
-            ->orderBy('COUNT_POSTS', 'DESC')->limit(3)->get();
+            ->orderBy('COUNT_POSTS', 'DESC')->with('posts')->limit(3)->get();
     }
 
     public function remove($category)
