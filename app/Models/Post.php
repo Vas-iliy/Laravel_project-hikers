@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Post extends Model
 {
-    use HasFactory;
+    use Sluggable;
 
     protected $fillable = ['title', 'description', 'content', 'category_id', 'image'];
 
@@ -32,9 +32,14 @@ class Post extends Model
 
     public function getImage()
     {
-        if ($this->image) {
-            return asset('assets/front/images/posts/'.$this->image);
+        if (!$this->image) {
+            return null;
         }
-        return null;
+        return asset('assets/front/images/posts/'.$this->image);
+    }
+
+    public function scopeLike($query, $s)
+    {
+        return $query->where('title', 'like', "%$s%");
     }
 }
