@@ -16,8 +16,13 @@ class ImageService
                 Storage::delete($image);
             }
             $folder = date('Y-m-d');
-            return $request->file('image')->store("images/{$folder}");
+            return $request->file('image')->store("posts/{$folder}");
         }
         return null;
+    }
+
+    public static function deleteImage($image)
+    {
+        Storage::delete($image);
     }
 }

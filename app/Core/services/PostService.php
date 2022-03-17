@@ -17,15 +17,23 @@ class PostService
 
     public function create(StorePost $request)
     {
-        $post = Post::query()->create($request->all());
-        $this->posts->save($post);
-        return $post;
+        $data = $request->all();
+
+        $data['image'] = ImageService::uploadImagePost($request);
+
+        $post = Post::query()->create($data);
+        $post->tags()->sync($request->tags);
     }
 
     public function edit($id, StorePost $request)
     {
-        $post = Post::query()->find($id)->update($request->all());
-        return $post;
+        $post = $this->posts->getId($id);
+        $data = $request->all();
+        if ($file = ImageService::uploadImagePost($request, $post->image)) {
+            $data['image'] = $file;
+        }
+        $post->update($data);
+        $post->tags()->sync($request->tags);
     }
 
     public function activate($id)
@@ -45,9 +53,8 @@ class PostService
     public function remove($id)
     {
         $post = $this->posts->getId($id);
-        if ($post->posts->count()) {
-            throw new \DomainException('Ошибка, у категории есть записи');
-        }
+        $post->tags()->sync([]);
+        ImageService::deleteImage($post->image);
         $this->posts->remove($post);
     }
 }

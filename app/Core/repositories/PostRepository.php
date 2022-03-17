@@ -9,7 +9,7 @@ class PostRepository
 {
     public function getId($id)
     {
-        if (!$category = Post::query()->where('id', $id)->first()) {
+        if (!$category = Post::query()->find($id)) {
             throw new NotFoundHttpException('Category is not found');
         }
         return $category;
@@ -35,8 +35,7 @@ class PostRepository
 
     public function remove($post)
     {
-        $post->status = $post::STATUS_DELETED;
-        if (!$post->save()) throw new \RuntimeException('Removing post error.');
+        $post->delete();
     }
 
     public function save($post)
