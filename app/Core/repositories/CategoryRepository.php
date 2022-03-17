@@ -35,6 +35,11 @@ class CategoryRepository
             ->orderBy('COUNT_POSTS', 'DESC')->with('posts')->limit(3)->get();
     }
 
+    public function getAllPlug()
+    {
+        return Category::query()->pluck('title', 'id')->all();
+    }
+
     public function remove($category)
     {
         $category->status = $category::STATUS_DELETED;

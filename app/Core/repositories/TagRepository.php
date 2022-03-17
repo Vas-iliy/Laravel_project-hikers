@@ -28,6 +28,11 @@ class TagRepository
         return Tag::query()->orderBy('created_at', 'desc')->paginate(env('PAGINATE'));
     }
 
+    public function getAllPlug()
+    {
+        return Tag::query()->pluck('title', 'id')->all();
+    }
+
     public function remove($tag)
     {
         $tag->status = $tag::STATUS_DELETED;
