@@ -2,15 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Core\repositories\UserRepository;
+use App\Core\services\UserService;
 use App\Http\Requests\LoginUser;
 use App\Http\Requests\RegisterUser;
-use App\Models\User;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    private $users;
+    private $service;
+
+    public function __construct(UserRepository $users, UserService $service)
+    {
+        $this->users = $users;
+        $this->service = $service;
+    }
+
     public function register()
     {
         return view('front.user.register');
@@ -18,14 +26,9 @@ class UserController extends Controller
 
     public function store(RegisterUser $request)
     {
-        $user = User::query()->create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password)
-        ]);
+        $user = $this->service->create($request);
         if ($user) {
-            event(new Registered($user));
-            Auth::login($user);
+            $this->service->login($user);
         }
         return redirect()->home()->with('success', 'Регистрация пройдена! пожалуйста, подтвердите E-mail!');
     }
@@ -37,12 +40,10 @@ class UserController extends Controller
 
     public function login(LoginUser $request)
     {
-        if (Auth::attempt([
-            'email' => $request->email,
-            'password' => $request->password
-        ])) {
+        if ($this->service->attempt($request)) {
             session()->flash('success', 'You are logged');
-            if (Auth::user()->is_admin) {
+            $user = $this->users->getId(Auth::id());
+            if ($user->role->role == 'admin') {
                 return redirect()->route('admin.index');
             }
             return redirect()->home();
@@ -52,7 +53,7 @@ class UserController extends Controller
 
     public function logout()
     {
-        Auth::logout();
+        $this->service->logout();
         return redirect()->home();
     }
 
