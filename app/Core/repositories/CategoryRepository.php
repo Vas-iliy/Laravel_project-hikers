@@ -17,7 +17,7 @@ class CategoryRepository
 
     public function getSlug($slug)
     {
-        if (!$category = Category::query()->where('slug', $slug)->first()) {
+        if (!$category = Category::query()->where('slug', $slug)->where('status', Category::STATUS_ACTIVE)->first()) {
             throw new NotFoundHttpException('Category is not found');
         }
         return $category;
@@ -37,7 +37,7 @@ class CategoryRepository
 
     public function getAllPlug()
     {
-        return Category::query()->pluck('title', 'id')->all();
+        return Category::query()->where('status', Category::STATUS_ACTIVE)->pluck('title', 'id')->all();
     }
 
     public function remove($category)

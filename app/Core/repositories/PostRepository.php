@@ -17,7 +17,7 @@ class PostRepository
 
     public function getSlug($slug)
     {
-        if (!$category = Post::query()->where('slug', $slug)->first()) {
+        if (!$category = Post::query()->where('slug', $slug)->where('status', Post::STATUS_ACTIVE)->first()) {
             throw new NotFoundHttpException('Post is not found');
         }
         return $category;
@@ -30,7 +30,7 @@ class PostRepository
 
     public function getPopularPosts()
     {
-        return Post::query()->orderBy('views', 'desc')->with('category')->limit(3)->get();
+        return Post::query()->where('status', Post::STATUS_ACTIVE)->orderBy('views', 'desc')->with('category')->limit(3)->get();
     }
 
     public function remove($post)
