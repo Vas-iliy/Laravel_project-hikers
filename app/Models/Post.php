@@ -12,7 +12,7 @@ class Post extends Model
     const STATUS_DRAFT = 9;
     const STATUS_ACTIVE = 10;
 
-    protected $fillable = ['title', 'description', 'content', 'category_id', 'image'];
+    protected $fillable = ['title', 'description', 'content', 'category_id', 'image', 'user_id'];
 
     public function tags()
     {
@@ -22,6 +22,11 @@ class Post extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function sluggable(): array

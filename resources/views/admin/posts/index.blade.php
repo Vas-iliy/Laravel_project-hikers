@@ -41,7 +41,7 @@
                                                 <th>Наименование</th>
                                                 <th>Категория</th>
                                                 <th>Теги</th>
-                                                <th>Дата</th>
+                                                <th>Пользователь</th>
                                                 <th>Actions</th>
                                             </tr>
                                             </thead>
@@ -52,11 +52,12 @@
                                                     <td>{{ $post->title }}</td>
                                                     <td>{{ $post->category->title }}</td>
                                                     <td>{{ $post->tags->pluck('title')->join(', ') }}</td>
-                                                    <td>{{ $post->created_at }}</td>
+                                                    <td>{{ $post->user->name }}</td>
                                                     <td>
                                                         <a href="{{ route('posts.edit', ['post' => $post->id]) }}" class="btn btn-info btn-sm float-left mr-1">
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </a>
+                                                        @if(\Illuminate\Support\Facades\Auth::user()->role->role === 'admin')
                                                         @if($post->status !== 10)
                                                             <form action="{{ route('posts.activate', ['post' => $post->id]) }}" method="post" class="float-left mr-1">
                                                                 @csrf
@@ -72,6 +73,7 @@
                                                                     <i class="fas fa-hourglass-half"></i>
                                                                 </button>
                                                             </form>
+                                                        @endif
                                                         @endif
 
                                                         <form action="{{ route('posts.destroy', ['post' => $post->id]) }}" method="post" class="float-left">

@@ -13,17 +13,17 @@ Route::get('/contact', [\App\Http\Controllers\PageController::class, 'contact'])
 Route::get('/about', [\App\Http\Controllers\PageController::class, 'about'])->name('about');
 
 //Admin
-Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'verified'], function () {
     Route::get('/', [\App\Http\Controllers\Admin\MainController::class, 'index'])->name('admin.index');
-    Route::resource('/categories', CategoryController::class);
-    Route::post('/categories/activate/{category}', [CategoryController::class, 'activate'])->name('categories.activate');
-    Route::post('/categories/draft/{category}', [CategoryController::class, 'draft'])->name('categories.draft');
-    Route::resource('/tags', TagController::class);
-    Route::post('/tags/activate/{tag}', [TagController::class, 'activate'])->name('tags.activate');
-    Route::post('/tags/draft/{tag}', [TagController::class, 'draft'])->name('tags.draft');
+    Route::resource('/categories', CategoryController::class)->middleware('admin');
+    Route::post('/categories/activate/{category}', [CategoryController::class, 'activate'])->name('categories.activate')->middleware('admin');
+    Route::post('/categories/draft/{category}', [CategoryController::class, 'draft'])->name('categories.draft')->middleware('admin');
+    Route::resource('/tags', TagController::class)->middleware('admin');
+    Route::post('/tags/activate/{tag}', [TagController::class, 'activate'])->name('tags.activate')->middleware('admin');
+    Route::post('/tags/draft/{tag}', [TagController::class, 'draft'])->name('tags.draft')->middleware('admin');
     Route::resource('/posts', PostController::class);
-    Route::post('/posts/activate/{post}', [PostController::class, 'activate'])->name('posts.activate');
-    Route::post('/posts/draft/{post}', [PostController::class, 'draft'])->name('posts.draft');
+    Route::post('/posts/activate/{post}', [PostController::class, 'activate'])->name('posts.activate')->middleware('admin');
+    Route::post('/posts/draft/{post}', [PostController::class, 'draft'])->name('posts.draft')->middleware('admin');
 });
 
 //Auth

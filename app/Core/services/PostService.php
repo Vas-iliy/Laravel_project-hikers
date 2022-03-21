@@ -5,6 +5,7 @@ namespace App\Core\services;
 use App\Core\repositories\PostRepository;
 use App\Http\Requests\StorePost;
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 
 class PostService
 {
@@ -18,6 +19,7 @@ class PostService
     public function create(StorePost $request)
     {
         $data = $request->all();
+        $data['user_id'] = Auth::id();
 
         $data['image'] = ImageService::uploadImagePost($request);
 
