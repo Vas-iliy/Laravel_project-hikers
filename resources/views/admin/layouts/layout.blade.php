@@ -172,6 +172,7 @@
                             <p>Главная</p>
                         </a>
                     </li>
+                    @if(\Illuminate\Support\Facades\Auth::user()->role->role === 'admin')
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-archive"></i>
@@ -218,6 +219,7 @@
                             </li>
                         </ul>
                     </li>
+                    @endif
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-edit"></i>

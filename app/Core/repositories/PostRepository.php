@@ -23,14 +23,14 @@ class PostRepository
         return $category;
     }
 
-    public function getAll()
+    public function getAllWithCategory($category_id)
     {
-        return Post::query()->orderBy('id', 'desc')->with('category', 'tags')->paginate(env('PAGINATE'));
+        return Post::query()->orderBy('id', 'desc')->where('category_id', $category_id)->with('tags')->paginate(env('PAGINATE'));
     }
 
     public function getPopularPosts()
     {
-        return Post::query()->where('status', Post::STATUS_ACTIVE)->orderBy('views', 'desc')->with('category')->limit(3)->get();
+        return Post::query()->where('status', Post::STATUS_ACTIVE)->orderBy('views', 'desc')->with('category')->limit(4)->get();
     }
 
     public function remove($post)
