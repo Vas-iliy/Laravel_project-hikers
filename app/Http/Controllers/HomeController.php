@@ -15,7 +15,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $popularCategory = $this->categories->getPopularCategory();
-        return view('front.home.index', compact( 'popularCategory'));
+        $categories = $this->categories->getPopularCategory();
+        return view('front.home.index', compact( 'categories'));
     }
 }

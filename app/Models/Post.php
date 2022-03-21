@@ -69,7 +69,7 @@ class Post extends Model
         if (!$this->image) {
             return null;
         }
-        return asset('assets/front/images/posts/'.$this->image);
+        return asset('assets/front/images/'.$this->image);
     }
 
     public function scopeLike($query, $s)

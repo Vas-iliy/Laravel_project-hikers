@@ -30,7 +30,7 @@ class CategoryRepository
 
     public function getPopularCategory()
     {
-        $categories = Category::query()->with('posts')->get()->sortBy(function ($category) {
+        $categories = Category::query()->with('posts')->limit(3)->get()->sortBy(function ($category) {
             return $category->posts->count();
         });
         return $categories;
