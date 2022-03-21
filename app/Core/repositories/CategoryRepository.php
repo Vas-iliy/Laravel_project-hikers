@@ -30,9 +30,10 @@ class CategoryRepository
 
     public function getPopularCategory()
     {
-        return Category::query()->selectRaw('categories.*,
-            (SELECT COUNT(posts.id) FROM posts WHERE post.category_id = category.id) AS COUNT_POSTS')
-            ->orderBy('COUNT_POSTS', 'DESC')->with('posts')->limit(3)->get();
+        $categories = Category::query()->with('posts')->get()->sortBy(function ($category) {
+            return $category->posts->count();
+        });
+        return $categories;
     }
 
     public function getAllPlug()

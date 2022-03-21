@@ -2,12 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Core\repositories\CategoryRepository;
 
 class HomeController extends Controller
 {
+    private $categories;
+
+    public function __construct(CategoryRepository $categories)
+    {
+        $this->categories = $categories;
+    }
+
     public function index()
     {
-        return view('front.home.index');
+        $popularCategory = $this->categories->getPopularCategory();
+        return view('front.home.index', compact( 'popularCategory'));
     }
 }
