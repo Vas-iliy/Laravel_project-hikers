@@ -17,7 +17,7 @@ class CategoryRepository
 
     public function getSlug($slug)
     {
-        if (!$category = Category::query()->where('slug', $slug)->where('status', Category::STATUS_ACTIVE)->first()) {
+        if (!$category = Category::query()->where('status', Category::STATUS_ACTIVE)->where('slug', $slug)->first()) {
             throw new NotFoundHttpException('Category is not found');
         }
         return $category;

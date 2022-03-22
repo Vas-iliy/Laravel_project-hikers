@@ -25,7 +25,7 @@ class PostRepository
 
     public function getAllWithCategory($category_id)
     {
-        return Post::query()->orderBy('id', 'desc')->where('category_id', $category_id)->with('tags')->paginate(env('PAGINATE'));
+        return Post::query()->where(['status' => Post::STATUS_ACTIVE, 'category_id' => $category_id])->orderBy('created_at', 'desc')->with('user', 'tags')->paginate(20);
     }
 
     public function getAll()
