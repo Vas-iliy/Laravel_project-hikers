@@ -17,7 +17,7 @@ class PostRepository
 
     public function getSlug($slug)
     {
-        if (!$category = Post::query()->where('slug', $slug)->where('status', Post::STATUS_ACTIVE)->first()) {
+        if (!$category = Post::query()->where('status', Post::STATUS_ACTIVE)->where('slug', $slug)->first()) {
             throw new NotFoundHttpException('Post is not found');
         }
         return $category;
