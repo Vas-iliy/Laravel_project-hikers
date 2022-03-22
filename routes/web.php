@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/contact', [\App\Http\Controllers\PageController::class, 'contact'])->name('contact');
 Route::get('/about', [\App\Http\Controllers\PageController::class, 'about'])->name('about');
+Route::get('/category/{slug}', [\App\Http\Controllers\CategoryController::class, 'category'])->name('category');
 
 //Admin
 Route::group(['prefix' => 'admin', 'middleware' => 'verified'], function () {
