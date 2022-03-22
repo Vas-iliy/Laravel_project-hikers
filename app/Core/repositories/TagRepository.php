@@ -17,7 +17,7 @@ class TagRepository
 
     public function getSlug($slug)
     {
-        if (!$tag = Tag::query()->where('slug', $slug)->where('status', Tag::STATUS_ACTIVE)->first()) {
+        if (!$tag = Tag::query()->where('status', Tag::STATUS_ACTIVE)->where('slug', $slug)->first()) {
             throw new NotFoundHttpException('tag is not found');
         }
         return $tag;

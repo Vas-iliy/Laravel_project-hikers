@@ -12,6 +12,7 @@ Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('h
 Route::get('/contact', [\App\Http\Controllers\PageController::class, 'contact'])->name('contact');
 Route::get('/about', [\App\Http\Controllers\PageController::class, 'about'])->name('about');
 Route::get('/category/{slug}', [\App\Http\Controllers\CategoryController::class, 'category'])->name('category');
+Route::get('/tag/{slug}', [\App\Http\Controllers\TagController::class, 'tag'])->name('tag');
 Route::get('/post/{slug}', [\App\Http\Controllers\PostController::class, 'show'])->name('post');
 
 //Admin

@@ -34,7 +34,7 @@
     <h3 class="heading">Tags</h3>
     <ul class="tags">
         @foreach($tags as $tag)
-        <li><a href="#">{{$tag->title}}</a></li>
+        <li><a href="{{route('tag', ['slug' => $tag->slug])}}">{{$tag->title}}</a></li>
         @endforeach
     </ul>
 </div>

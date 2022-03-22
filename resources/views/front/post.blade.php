@@ -34,7 +34,7 @@
                 <div class="pt-5">
                     <p>Tags:
                         @foreach($post->tags as $tag)
-                        <a href="#">#{{$tag->title}}</a>,
+                        <a href="{{route('tag', ['slug' => $tag->slug])}}">#{{$tag->title}}</a>,
                         @endforeach
                     </p>
                 </div>
