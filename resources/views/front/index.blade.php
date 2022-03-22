@@ -49,7 +49,7 @@
             @endif
             <div class="col-lg-6 pl-lg-4">
                 @foreach($popularPosts as $k=>$post)
-                    @if($k>0)
+                    @if($k!=0)
                     <div class="entry3 d-block d-sm-flex">
                         <figure class="figure order-2"><a href="{{route('post', ['slug' => $post->slug])}}"><img src="{{$post->getImage()}}" alt="Image" class="img-fluid rounded"></a></figure>
                         <div class="text mr-4 order-1">
@@ -86,14 +86,16 @@
                 @endif
 
                 @if($category->posts->count() > 1)
-                    @foreach($category->posts as $post)
-                    <div class="entry4 d-block d-sm-flex">
-                        <figure class="figure order-2"><a href="#"><img src="{{$post->getImage()}}" alt="Image" class="img-fluid rounded"></a></figure>
-                        <div class="text mr-4 order-1">
-                            <h2><a href="{{route('post', ['slug' => $post->slug])}}">{{$post->title}}</a></h2>
-                            <span class="post-meta mb-3 d-block">{{$post->getTime()}}</span>
+                    @foreach($category->posts as $k => $post)
+                        @if($k != 0)
+                        <div class="entry4 d-block d-sm-flex">
+                            <figure class="figure order-2"><a href="{{route('post', ['slug' => $post->slug])}}"><img src="{{$post->getImage()}}" alt="Image" class="img-fluid rounded"></a></figure>
+                            <div class="text mr-4 order-1">
+                                <h2><a href="{{route('post', ['slug' => $post->slug])}}">{{$post->title}}</a></h2>
+                                <span class="post-meta mb-3 d-block">{{$post->getTime()}}</span>
+                            </div>
                         </div>
-                    </div>
+                        @endif
                     @endforeach
                 @endif
             </div>
