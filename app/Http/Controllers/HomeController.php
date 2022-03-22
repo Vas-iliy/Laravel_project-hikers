@@ -18,6 +18,6 @@ class HomeController extends Controller
     {
         $categories = $this->categories->getPopularCategory();
         $popularPosts = PostRepository::getPopularPosts();
-        return view('front.home.index', compact( 'categories', 'popularPosts'));
+        return view('front.index', compact( 'categories', 'popularPosts'));
     }
 }

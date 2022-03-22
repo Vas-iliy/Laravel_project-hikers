@@ -20,6 +20,6 @@ class CategoryController extends Controller
     {
         $category = $this->categories->getSlug($slug);
         $posts = $this->posts->getAllWithCategory($category->id);
-        return view('front.categories.category', compact('category', 'posts'));
+        return view('front.category', compact('category', 'posts'));
     }
 }

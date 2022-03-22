@@ -16,6 +16,6 @@ class PostController extends Controller
     public function show($slug)
     {
         $post = $this->posts->getSlug($slug);
-        return view('front.posts.post', compact('post'));
+        return view('front.post', compact('post'));
     }
 }
