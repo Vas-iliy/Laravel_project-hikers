@@ -28,6 +28,11 @@ class TagRepository
         return Tag::query()->orderBy('created_at', 'desc')->paginate(env('PAGINATE'));
     }
 
+    public static function getTags()
+    {
+        return Tag::query()->where('status', Tag::STATUS_ACTIVE)->orderBy('created_at', 'desc')->paginate(env('PAGINATE'));
+    }
+
     public function getAllPlug()
     {
         return Tag::query()->where('status', Tag::STATUS_ACTIVE)->pluck('title', 'id')->all();

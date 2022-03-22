@@ -28,6 +28,11 @@ class CategoryRepository
         return Category::query()->orderBy('created_at', 'desc')->paginate(env('PAGINATE'));
     }
 
+    public static function getCategories()
+    {
+        return Category::query()->where('status', Category::STATUS_ACTIVE)->with('posts')->orderBy('created_at', 'desc')->paginate(env('PAGINATE'));
+    }
+
     public function getPopularCategory()
     {
         $categories = Category::query()->with('posts')->limit(3)->get()->sortBy(function ($category) {
