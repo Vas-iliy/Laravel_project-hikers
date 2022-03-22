@@ -32,4 +32,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Post::class);
     }
+
+    public function getImage()
+    {
+        if (!$this->image) {
+            return null;
+        }
+        return asset('assets/front/images/'.$this->image);
+    }
 }

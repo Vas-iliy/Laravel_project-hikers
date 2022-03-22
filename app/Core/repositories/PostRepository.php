@@ -35,7 +35,7 @@ class PostRepository
 
     public static function getPopularPosts()
     {
-        return Post::query()->where('status', Post::STATUS_ACTIVE)->orderBy('views', 'desc')->with('category', 'user')->limit(2)->get();
+        return Post::query()->where('status', Post::STATUS_ACTIVE)->orderBy('views', 'desc')->with('category', 'user')->limit(4)->get();
     }
 
     public function remove($post)

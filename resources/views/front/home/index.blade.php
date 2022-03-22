@@ -31,50 +31,35 @@
             <div class="col-12 section-heading"><h2>Popular Posts</h2></div>
         </div>
         <div class="row">
+            @if(!empty($popularPosts[0]))
             <div class="col-lg-6 mb-5 mb-lg-0">
                 <div class="entry2">
-                    <a href="single.html"><img src="images/img_1.jpg" alt="Image" class="img-fluid rounded"></a>
-                    <span class="post-category text-white bg-success mb-3">Nature</span>
-                    <h2><a href="single.html">The 20 Biggest Fintech Companies In America 2019</a></h2>
+                    <a href="single.html"><img src="{{$popularPosts[0]->getImage()}}" alt="Image" class="img-fluid rounded"></a>
+                    <span class="post-category text-white bg-success mb-3">{{$popularPosts[0]->category->title}}</span>
+                    <h2><a href="single.html">{{$popularPosts[0]->title}}</a></h2>
                     <div class="post-meta align-items-center text-left clearfix">
-                        <figure class="author-figure mb-0 mr-3 float-left"><img src="images/person_1.jpg" alt="Image" class="img-fluid"></figure>
-                        <span class="d-inline-block mt-1">By <a href="#">Carrol Atkinson</a></span>
-                        <span>&nbsp;-&nbsp; February 10, 2019</span>
+                        <figure class="author-figure mb-0 mr-3 float-left"><img src="{{$popularPosts[0]->user->getImage()}}" alt="Image" class="img-fluid"></figure>
+                        <span class="d-inline-block mt-1">By <a href="#">{{$popularPosts[0]->user->name}}</a></span>
+                        <span>&nbsp;-&nbsp; {{$popularPosts[0]->getTime()}}</span>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo sunt tempora dolor laudantium sed optio, explicabo ad deleniti impedit facilis fugit recusandae! Illo, aliquid, dicta beatae quia porro id est.</p>
+                    <p>{{$popularPosts[0]->description}}</p>
                 </div>
             </div>
+            @endif
             <div class="col-lg-6 pl-lg-4">
-                <div class="entry3 d-block d-sm-flex">
-                    <figure class="figure order-2"><a href="single.html"><img src="images/img_2.jpg" alt="Image" class="img-fluid rounded"></a></figure>
-                    <div class="text mr-4 order-1">
-                        <span class="post-category text-white bg-success mb-3">Nature</span>
-                        <h2><a href="single.html">The 20 Biggest Fintech Companies In America 2019</a></h2>
-                        <span class="post-meta mb-3 d-block">May 12, 2019</span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo sunt tempora dolor laudantium sed optio.</p>
+                @foreach($popularPosts as $k=>$post)
+                    @if($k>0)
+                    <div class="entry3 d-block d-sm-flex">
+                        <figure class="figure order-2"><a href="single.html"><img src="{{$post->getImage()}}" alt="Image" class="img-fluid rounded"></a></figure>
+                        <div class="text mr-4 order-1">
+                            <span class="post-category text-white bg-success mb-3">{{$post->category->title}}</span>
+                            <h2><a href="single.html">{{$post->title}}</a></h2>
+                            <span class="post-meta mb-3 d-block">{{$post->getTime()}}</span>
+                            <p>{{$post->description}}</p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="entry3 d-block d-sm-flex">
-                    <figure class="figure order-2"><a href="single.html"><img src="images/img_3.jpg" alt="Image" class="img-fluid rounded"></a></figure>
-                    <div class="text mr-4 order-1">
-                        <span class="post-category text-white bg-success mb-3">Nature</span>
-                        <h2><a href="single.html">The 20 Biggest Fintech Companies In America 2019</a></h2>
-                        <span class="post-meta mb-3 d-block">May 12, 2019</span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo sunt tempora dolor laudantium sed optio.</p>
-                    </div>
-                </div>
-
-                <div class="entry3 d-block d-sm-flex">
-                    <figure class="figure order-2"><a href="single.html"><img src="images/img_4.jpg" alt="Image" class="img-fluid rounded"></a></figure>
-                    <div class="text mr-4 order-1">
-                        <span class="post-category text-white bg-success mb-3">Nature</span>
-                        <h2><a href="single.html">The 20 Biggest Fintech Companies In America 2019</a></h2>
-                        <span class="post-meta mb-3 d-block">May 12, 2019</span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo sunt tempora dolor laudantium sed optio.</p>
-                    </div>
-                </div>
-
+                    @endif
+                @endforeach
             </div>
         </div>
     </div>

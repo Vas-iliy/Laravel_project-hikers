@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Core\repositories\CategoryRepository;
+use App\Core\repositories\PostRepository;
 
 class HomeController extends Controller
 {
@@ -16,6 +17,7 @@ class HomeController extends Controller
     public function index()
     {
         $categories = $this->categories->getPopularCategory();
-        return view('front.home.index', compact( 'categories'));
+        $popularPosts = PostRepository::getPopularPosts();
+        return view('front.home.index', compact( 'categories', 'popularPosts'));
     }
 }

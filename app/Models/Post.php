@@ -66,10 +66,12 @@ class Post extends Model
 
     public function getImage()
     {
-        if (!$this->image) {
-            return null;
-        }
         return asset('assets/front/images/'.$this->image);
+    }
+
+    public function getTime()
+    {
+        return date('M d, Y', strtotime($this->updated_at));
     }
 
     public function scopeLike($query, $s)

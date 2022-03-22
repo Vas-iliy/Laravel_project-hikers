@@ -11,7 +11,7 @@
                         <div class="post-meta align-items-center text-left">
                             <figure class="author-figure mb-0 mr-3 float-left"><img src="{{asset('assets/front/images/'.$post->user->image)}}" alt="Image" class="img-fluid"></figure>
                             <span class="d-inline-block mt-1">By {{$post->user->name}}</span>
-                            <span> - {{date('M d, Y', strtotime($post->updated_at))}}</span>
+                            <span> - {{$post->getTime()}}</span>
                         </div>
                     </div>
                 </div>
